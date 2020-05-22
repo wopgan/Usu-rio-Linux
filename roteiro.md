@@ -59,3 +59,25 @@ Vamos fazer uma rápida configuração para melhorar a performance da velocidade
 
  * *genfstab /mnt >> /mnt/etc/fstab*
 
+
+ ## Acessando o novo sistema
+
+ - [ ] Conferir FSTAB e acessar CHROOT para iniciar a configuração do novo sistema.
+
+ * *cat /mnt >> /mnt/etc/fstab*
+ * *arch-chroot /mnt*
+
+ Estamos agora no que vai ser a base do seu sistema, não estamos mais lidando indiretamente com o sistema em live e sim com o sistema que se tornara o seu queridão em poucos minutos. 
+ **IMPORTANTE: apartir de agora cada comando dado será tão importante quanto os comandos dados em live, só que agora estamos configurando o produto final da sua instalação, tenha muito cuidado e atenção para seguir cada passo sugerido aqui nesse manual, lembre-se que apartir de agora tudo que for feito é para o melhor funcionamento ou não do seu sistema.**
+
+ - [ ] Configurar Idioma pt-BR e teclado.
+
+ * *vim /etc/locale.gen*
+ Localize a linha **pt_BR.UTF-8** e retire o **#** (descomentando a linha).
+ * *locale-gen*
+ Aguarde terminar o processo.
+ * *echo LANG=pt_BR.UTF-8 >> /etc/locale.conf*
+ Agora o Idioma do sistema estará setado para português do Brasil
+ Agora vamos configurar o Teclado.
+ * *echo KEYMAP=br-abnt2 >> /etc/vconsole.conf*
+ Pronto isso definirá o seu teclado como o padrão ABNT2 com a presença do "Ç", caso seu teclado seja do padrão americano e vc queira continuar tendo os acentos funcionando normalmente substitua o **br-abnt2** por **us-acentos**.
