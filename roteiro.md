@@ -1,5 +1,7 @@
 # Instalação do Arch Linux
 
+**Introdução, quem sou eu, Por que usar Linux e ainda por cima o Arch Linux, Comunidade**
+
 ## Preparando a base do sistema
 
 - [ ] Configurar Layout do Teclado
@@ -73,11 +75,82 @@ Vamos fazer uma rápida configuração para melhorar a performance da velocidade
  - [ ] Configurar Idioma pt-BR e teclado.
 
  * *vim /etc/locale.gen*
+
  Localize a linha **pt_BR.UTF-8** e retire o **#** (descomentando a linha).
+
  * *locale-gen*
+
  Aguarde terminar o processo.
+
  * *echo LANG=pt_BR.UTF-8 >> /etc/locale.conf*
+
  Agora o Idioma do sistema estará setado para português do Brasil
  Agora vamos configurar o Teclado.
+ 
  * *echo KEYMAP=br-abnt2 >> /etc/vconsole.conf*
+ 
  Pronto isso definirá o seu teclado como o padrão ABNT2 com a presença do "Ç", caso seu teclado seja do padrão americano e vc queira continuar tendo os acentos funcionando normalmente substitua o **br-abnt2** por **us-acentos**.
+
+ ## Preparando root e o boot.
+
+ - [ ] Preparar o ambiente no novo sistema.
+
+ * *mkinicpio -p linux*
+
+ Esse comando ira criar um ambiente minimo de ramdisk, será levantando modulos do kernel para que o sistema inicialize de forma correnta.
+
+ - [ ] Instalar e configurar GRUB
+
+ * *grub-install /dev/sda*
+
+ Comando para instalar o grub no disco em qual estamos instalando o novo sistema Operacional.
+
+ * *grub-mkconfig -o /boot/grub/grub.cfg*
+
+ comando para gerar o grub cfgen
+
+ ## Criar novo usuário e senha para o Root
+
+ - [ ] Criar senha do root
+
+ * *passwd*
+
+ Nesse momento após o acionamento desse comando vamos ser solicitados que inserimos uma nova senha para o ROOT do sistema. Adicione a senha 2 vezes para que possa ser criada e confirmada a senha.
+
+ - [ ] Vamos criar o novo usuário do sistema
+
+ * *useradd -m -g users -G wheel -s /bin/bash novousuario*
+
+ Nesse instante estaremos criando o novo usuário do sistema, com esse usuário você vai usar o sistema, logar e ter todas as permissões necessárias utilizar o sistema.
+
+ * *passwd novousuario*
+
+ vamos criar a senha para o novo usuário da mesma forma q fizemos com o root.
+
+ ## Pronto!
+
+ Até o presente momento temos uma boa parte do nosso sistema operacional (Arch Linux) instalado.
+ Até então já temos o suficiente para iniciarmos o nosso sistema em modo de texto, só que não é o que precisamos, precisamos do sistema pronto para usar. Apartir de agora vamos caminhar de 2 maneiras diferentes, pois vamos estar configurando o KDE e o GNOME, então apartir de agora fique atento ao processo que você vai estar seguindo pois estaremos tendo 2 resultados diferenciados e estarei com você até o final dessa instalação e até você poder estar **#usandolinux** de verdade!
+
+ ### Vamos lá!
+
+ ## KDE Desktop
+
+ - [ ] Instalação do ambiente de area de trabalho **KDE** 
+
+ * *pacman -S xorg-server xorg-xinit xf86-video-vmware konsole dolphin dolphin-plugins plasma ark spectacle okular kio kio-extras unrar zip unzip firefox kate p7zip ntfs-3g exfat-utils sudo*
+
+ Pronto apartir do comando acima nós termoes o básico para iniciar e utilizar o ambiente gráfico KDE, uma rápida explicação será dada sobre tudo o q esta sendo instalado.
+
+ Logo após a isntalação vamos informar ao sistema o que ele deve subir ao inicializarmos pela primeira vez o computador.
+
+ * *systemctl enable NetworkManager*
+ * *systemctl enable sddm*
+
+ Pronto feito isso podemos sair do ambiente do CHROOT (sim ainda estamos na live do arch linux até agora) desmontar as unidades montadas e reiniciar o sistema! 
+
+ Se tudo correu bem até agora, o SDDM vai iniciarlizar mostrando seu usário e vamos dar o boot pela primeira vez no nosso novo sistema! 
+
+ Vamos começar a customizar nosso KDE. 
+
+ 
