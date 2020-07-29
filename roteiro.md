@@ -11,7 +11,7 @@
 
 - [ ] Conectar a internet
 
- * *wifi-menu*
+ * Novo modo em breve
 
 Para conectar a uma rede wifi
 
